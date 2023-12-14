@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   tfsec:
-    name: Run tfsec sarif report
+    name: Run tfsec report
     runs-on: ubuntu-latest
     
     steps:
@@ -14,11 +14,11 @@ jobs:
       - name: Run tfsec
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
-          format: tfsec-report.json
+          format: json
 
-      - name: Upload SARIF file
+      - name: Upload file
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: tfsec-findings
-          path: tfsec-report.json
+          path: tfsec.json

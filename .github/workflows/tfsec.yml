@@ -12,13 +12,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run tfsec
-        uses: aquasecurity/tfsec-action@v1.0.3
+        uses: aquasecurity/tfsec-sarif-action@v0.1.4
         with:
-          format: json
-
-      - name: Upload file
-        uses: actions/upload-artifact@v3
-        if: always()
+          sarif_file: tfsec.sarif
+          
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
         with:
-          name: tfsec-findings
-          path: tfsec.json
+          sarif_file: tfsec.sarif  

@@ -11,12 +11,25 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Run tfsec
-        uses: aquasecurity/tfsec-sarif-action@v0.1.4
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@master
         with:
-          sarif_file: tfsec.sarif
+          directory: terraform/azure
+          framework: terraform
+
+      - name: upload checkov artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: checkov-findings
+          path: checkov.sarif
+  
+      # - name: Run tfsec
+      #   uses: aquasecurity/tfsec-sarif-action@v0.1.4
+      #   with:
+      #     sarif_file: tfsec.sarif
           
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: tfsec.sarif  
+      # - name: Upload SARIF file
+      #   uses: github/codeql-action/upload-sarif@v1
+      #   with:
+      #     sarif_file: tfsec.sarif  

@@ -1,7 +1,7 @@
 resource azurerm_app_service_plan "example" {
   name                = "terragoat-app-service-plan-${var.environment}"
   location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  resource_group_name = azurerm_resource_group.example.name 
 
   sku {
     tier = "Dynamic"

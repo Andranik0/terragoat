@@ -22,7 +22,7 @@ jobs:
         if: always()
         with:
           name: checkov-findings
-          path: checkov.sarif
+          path: results.sarif
   
       # - name: Run tfsec
       #   uses: aquasecurity/tfsec-sarif-action@v0.1.4
